@@ -1,0 +1,5 @@
+tmp/
+.sass-cache/
+*.swp
+*.swo
+*.orig
