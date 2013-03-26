@@ -1,0 +1,28 @@
+{
+  "name": "4south-ember",
+  "version": "0.1.0",
+  "description": "Basic Application Layout for manageable ember applications using node.js build tools",
+  "main": "index.js",
+  "dependencies": {
+    "grunt": "~0.4.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/stevekane/4south-ember/"
+  },
+  "keywords": [
+    "emberjs",
+    "ember",
+    "node",
+    "grunt",
+    "minispade",
+    "4south",
+    "stevekane"
+  ],
+  "author": "Steven Kane",
+  "license": "BSD"
+}
