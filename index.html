@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Base for Ember Application</title>
+    <link href="public/css/appcss.css" rel="stylesheet" type="text/css">
   </head>
   
   <body>
@@ -18,9 +19,10 @@
     <script src="public/js/libs/handlebars.js"></script>
     <script src="public/js/libs/ember-1.0.0-rc.1.js"></script>
 
-    <script src="app.js"></script>
+    <script src="public/dist/app.js"></script>
+    <script src="public/dist/apptemplates.js"></script>
     <script>
-      minispade.require("Application.js");
+      minispade.require("application/Application.js");
     </script>
   </body>
 </html>
