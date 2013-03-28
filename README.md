@@ -23,7 +23,7 @@ http://sass-lang.com
 2. Install node, npm, and grunt
 http://nodejs.org<br />
 http://npmjs.org<br />
-http://gruntjs.com
+http://gruntjs.com<br />
 ###Setup###
 3. Clone this repo
 4. Run "npm install" in the project directory.  This will use the list of dependencies found in package.json to install the required
