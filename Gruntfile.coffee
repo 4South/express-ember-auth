@@ -82,4 +82,4 @@ module.exports = (grunt) ->
                                         'sass',
                                         'coffee',
                                         'minispade'
-                                        'regarde'])
+                                        'regarde'             ])
