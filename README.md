@@ -16,7 +16,7 @@ Watch tasks and browser livereload will greatly improve the speed of prototyping
 **browser livereload** (anytime a watched file changes, your browser will reload automatically after re-compilation)<br />
 
 ##Get started##
-###Dependencies###
+###Setup###
 1. Install ruby by whatever means you prefer and install sass compiler
 http://ruby-lang.org<br/>
 http://sass-lang.com
@@ -29,6 +29,7 @@ http://gruntjs.com<br />
 packages from npm.
 5. Run "grunt" to start the grunt task manager and engage the development server on port 9001 (changeable in Gruntfile.js)
 6. Open localhost:9001 in the browser and be happy
+
 ###Testing file watching, recompilation, and livereload###
 To test these features, open any coffeescript file found in public/coffee and make some changes (or just save) and then save them.  You 
 should see your browser window refresh itself and if you have made changes that are visible you will see them reflected in the browser in near-
