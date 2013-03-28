@@ -24,7 +24,6 @@ http://sass-lang.com
 http://nodejs.org<br />
 http://npmjs.org<br />
 http://gruntjs.com<br />
-###Setup###
 3. Clone this repo
 4. Run "npm install" in the project directory.  This will use the list of dependencies found in package.json to install the required
 packages from npm.
