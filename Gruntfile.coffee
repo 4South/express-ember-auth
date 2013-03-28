@@ -47,14 +47,7 @@ module.exports = (grunt) ->
             return sourceFile.replace(/public\/handlebars\//,'')
         files:
           "public/dist/apptemplates.js": "public/handlebars/**/*.handlebars"
-      
-    connect:
-      livereload:
-        options:
-          port: 9001
-          middleware: (connect, options) ->
-            [lrSnippet, folderMount(connect, options.base)]
-
+    
     regarde:
       coffee:
         files: 'public/coffee/**/*.coffee'
@@ -65,21 +58,29 @@ module.exports = (grunt) ->
       sass:
         files: 'public/sass/**/*.sass'
         tasks: ['sass', 'livereload', 'regarde']
+        
 
   grunt.loadNpmTasks('grunt-contrib-livereload')
   grunt.loadNpmTasks('grunt-contrib-sass')
   grunt.loadNpmTasks('grunt-contrib-coffee')
-  grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-ember-templates')
   grunt.loadNpmTasks('grunt-regarde')
   grunt.loadNpmTasks('grunt-minispade')
 
-  grunt.registerTask('default', [       'livereload-start',
-                                        'connect',
+  grunt.registerTask('withreload', [
+                                        'livereload-start',
                                         'ember_templates',
                                         'clean',
                                         'sass',
                                         'coffee',
                                         'minispade'
                                         'regarde'             ])
+
+  grunt.registerTask('default', [
+                                        'ember_templates',
+                                        'clean',
+                                        'sass',
+                                        'coffee',
+                                        'minispade'
+                                        'rebuild'             ])

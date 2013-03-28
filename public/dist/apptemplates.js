@@ -4,13 +4,13 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   var buffer = '', hashTypes, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<h2>This header text is located in application.handlebars</h2>\n<h4>The active controller is<br>");
+  data.buffer.push("<h2>This text is located in application.handlebars</h2>\n<h4>The active controller is<br>");
   hashTypes = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "controller", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
   data.buffer.push(".</h4>\n<p>");
   hashTypes = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "controller.sampleText", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
-  data.buffer.push("</p>\n");
+  data.buffer.push("</p>\nHello audience\n");
   return buffer;
   
 });
