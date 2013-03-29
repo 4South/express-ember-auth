@@ -32,13 +32,18 @@ module.exports = (grunt) ->
         dest: 'public/compiled-js'
         ext: '.js'
 
+    concat:
+      css:
+        src: "public/css/**/*.css"
+        dest: "public/dist/appcss.css"
+
     sass:
       dist:
         options:
           trace: true
           style: 'expanded'
         files:
-          'public/css/appcss.css': 'public/sass/app.sass'
+          'public/dist/appsass.css': 'public/sass/app.sass'
 
     ember_templates:
       compile:
@@ -64,11 +69,19 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-sass')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-clean')
+  grunt.loadNpmTasks('grunt-contrib-concat')
   grunt.loadNpmTasks('grunt-ember-templates')
   grunt.loadNpmTasks('grunt-regarde')
   grunt.loadNpmTasks('grunt-minispade')
 
-  grunt.registerTask('withreload', [
+  grunt.registerTask('vanilla', [
+                                        'livereload-start',
+                                        'ember_templates',
+                                        'concat:css',
+                                        'minispade'
+                                        'regarde'             ])
+  
+  grunt.registerTask('4south', [
                                         'livereload-start',
                                         'ember_templates',
                                         'clean',
@@ -77,10 +90,9 @@ module.exports = (grunt) ->
                                         'minispade'
                                         'regarde'             ])
 
-  grunt.registerTask('default', [
+  grunt.registerTask('noreload', [
                                         'ember_templates',
                                         'clean',
                                         'sass',
                                         'coffee',
-                                        'minispade'
-                                        'rebuild'             ])
+                                        'minispade'           ])

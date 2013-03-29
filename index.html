@@ -1,22 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Base for Ember Application</title>
     <link href="public/assets/css/libs/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="public/css/appcss.css" rel="stylesheet" type="text/css">
+    <link href="public/dist/appcss.css" rel="stylesheet" type="text/css">
+    <link href="public/dist/appsass.css" rel="stylesheet" type="text/css">
   </head>
   
   <body>
     <div id="container"></div>
 
-    <script src="public/assets/js/libs/jquery-1.9.1.min.js"></script>
-
-    <script src="public/assets/js/libs/raphael-min.js"></script>
-    <script src="public/assets/js/libs/underscore-min.js"></script>
-    <script src="public/assets/js/libs/sequence-diagram-min.js"></script>
-
     <script src="public/assets/js/libs/minispade.js"></script>
-
+    <script src="public/assets/js/libs/jquery-1.9.1.min.js"></script>
     <script src="public/assets/js/libs/handlebars.js"></script>
     <script src="public/assets/js/libs/ember-1.0.0-rc.1.js"></script>
 
@@ -25,15 +20,10 @@
     <script>
       minispade.require("application/Application.js");
     </script>
+
+    <!-- needed to embed livereload in your actual server -->
     <script src="http://localhost:35729/livereload.js?snipver=1">
     </script>
 
   </body>
 </html>
-
-
-
-
-
-
-
