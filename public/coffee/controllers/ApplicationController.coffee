@@ -1,2 +1,30 @@
 App.ApplicationController = Ember.Controller.extend
-  sampleText: "hey this application controller is sure neat"
+  
+  username: ''
+  password: ''
+  loggedIn: false
+  responseText: ''
+
+  data: (->
+    return {username: @get('username'), password: @get('password')}
+  ).property('username', 'password')
+
+  login: () ->
+    Ember.$.ajax(
+      url: '/login'
+      type: 'POST'
+      dataType: 'json'
+      contentType: 'application/json; charset=utf-8'
+      context: @
+      data: JSON.stringify(@get('data'))
+      success: (data) ->
+        Ember.run(@, ()->
+          @set('loggedIn', true)
+        )
+      error: (xhr) ->
+        Ember.run(@, ()->
+          console.log(xhr)
+          @set('loggedIn', false)
+          @set('responseText', xhr.responseText)
+        )
+     )

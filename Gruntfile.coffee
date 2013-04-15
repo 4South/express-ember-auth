@@ -1,6 +1,5 @@
 'use strict'
 path = require('path')
-lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet
 
 folderMount = (connect, point) ->
   connect.static(path.resolve(point))

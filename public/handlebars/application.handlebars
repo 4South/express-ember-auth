@@ -1,46 +1,19 @@
-<div class="row-fluid">
-  <div class="page-header offset2 span8">
-    <h1>4South-Ember Accelerates Local Development</h1>
+<div class="navbar navbar-inverse">
+  <p class="navbar-text">username</p>
+  <div class="navbar-form">
+    {{view Ember.TextField valueBinding="username"}} 
   </div>
-</div>
-<div class="container-fluid">
-  <div class="row-fluid">
-    <div class="offset2 span8">
-      <h3>Template Information</h3>
-      <ul style="list-style-type:none">
-        <li>This default application.handlebars is found in <strong>public/handlebars/</strong>.</li>
-        <li>Delete this file to have Ember autogenerate one for you.</li>
-        <li>Be sure your application.handlebars <strong>contains an outlet</strong> so Ember has 
-            a target to render your application into!</li>
-      </ul>
-      <h3>Application Information</h3> 
-      <table class="table">
-        <tr>
-          <th>Namespace</th>
-          <td>{{controller.namespace}}</td>
-          <td></td>
-        </tr>
-          <th>Controller</th>
-          <td>{{controller._debugContainerKey}}</td>
-          <td>{{controller}}</td>
-        <tr>
-          <th>View</th>
-          <td>
-            {{view.renderedName}}
-          </td>
-          <td>
-            {{#with view}}{{this}}{{/with}}
-          </td>
-        </tr>
-        <tr>
-          <th>Route</th>
-          <td>{{currentPath}}</td>
-          <td></td>
-        </tr>
-      </table>
-      <h3>
-      <p class="lead text-error"><strong>Outlet is here</strong></p>
-      {{outlet}}
-    </div>
+  <p class="navbar-text">password</p>
+  <div class="navbar-form">
+    {{view Ember.TextField valueBinding="password"}} 
   </div>
+  <button class="btn" {{action login}}>Login</button>
 </div>
+
+{{#if loggedIn}}
+  <h1>You logged in!!</h1>
+{{else}}
+  <h1>Not logged in ):</h1>
+  <h3>{{responseText}}</h3>
+{{/if}}
+{{outlet}}

@@ -5,34 +5,41 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
 
 function program1(depth0,data) {
   
-  var hashTypes;
-  hashTypes = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
+  
+  data.buffer.push("\n  <h1>You logged in!!</h1>\n");
   }
 
-  data.buffer.push("<div class=\"row-fluid\">\n  <div class=\"page-header offset2 span8\">\n    <h1>4South-Ember Accelerates Local Development</h1>\n  </div>\n</div>\n<div class=\"container-fluid\">\n  <div class=\"row-fluid\">\n    <div class=\"offset2 span8\">\n      <h3>Template Information</h3>\n      <ul style=\"list-style-type:none\">\n        <li>This default application.handlebars is found in <strong>public/handlebars/</strong>.</li>\n        <li>Delete this file to have Ember autogenerate one for you.</li>\n        <li>Be sure your application.handlebars <strong>contains an outlet</strong> so Ember has \n            a target to render your application into!</li>\n      </ul>\n      <h3>Application Information</h3> \n      <table class=\"table\">\n        <tr>\n          <th>Namespace</th>\n          <td>");
+function program3(depth0,data) {
+  
+  var buffer = '', hashTypes;
+  data.buffer.push("\n  <h1>Not logged in ):</h1>\n  <h3>");
   hashTypes = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "controller.namespace", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
-  data.buffer.push("</td>\n          <td></td>\n        </tr>\n          <th>Controller</th>\n          <td>");
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "responseText", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
+  data.buffer.push("</h3>\n");
+  return buffer;
+  }
+
+  data.buffer.push("<div class=\"navbar navbar-inverse\">\n  <p class=\"navbar-text\">username</p>\n  <div class=\"navbar-form\">\n    ");
+  hashTypes = {'valueBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.TextField", {hash:{
+    'valueBinding': ("username")
+  },contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
+  data.buffer.push(" \n  </div>\n  <p class=\"navbar-text\">password</p>\n  <div class=\"navbar-form\">\n    ");
+  hashTypes = {'valueBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.TextField", {hash:{
+    'valueBinding': ("password")
+  },contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
+  data.buffer.push(" \n  </div>\n  <button class=\"btn\" ");
   hashTypes = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "controller._debugContainerKey", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
-  data.buffer.push("</td>\n          <td>");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "login", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
+  data.buffer.push(">Login</button>\n</div>\n\n");
   hashTypes = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "controller", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
-  data.buffer.push("</td>\n        <tr>\n          <th>View</th>\n          <td>\n            ");
-  hashTypes = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.renderedName", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n          </td>\n          <td>\n            ");
-  hashTypes = {};
-  stack1 = helpers['with'].call(depth0, "view", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data});
+  stack1 = helpers['if'].call(depth0, "loggedIn", {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n          </td>\n        </tr>\n        <tr>\n          <th>Route</th>\n          <td>");
-  hashTypes = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "currentPath", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
-  data.buffer.push("</td>\n          <td></td>\n        </tr>\n      </table>\n      <h3>\n      <p class=\"lead text-error\"><strong>Outlet is here</strong></p>\n      ");
+  data.buffer.push("\n");
   hashTypes = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "outlet", {hash:{},contexts:[depth0],types:["ID"],hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n    </div>\n  </div>\n</div>\n");
+  data.buffer.push("\n");
   return buffer;
   
 });
