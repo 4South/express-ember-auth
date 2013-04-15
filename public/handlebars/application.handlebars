@@ -1,19 +1,29 @@
-<div class="navbar navbar-inverse">
-  <p class="navbar-text">username</p>
-  <div class="navbar-form">
-    {{view Ember.TextField valueBinding="username"}} 
-  </div>
-  <p class="navbar-text">password</p>
-  <div class="navbar-form">
-    {{view Ember.TextField valueBinding="password"}} 
-  </div>
-  <button class="btn" {{action login}}>Login</button>
-</div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
 
-{{#if loggedIn}}
-  <h1>You logged in!!</h1>
-{{else}}
-  <h1>Not logged in ):</h1>
-  <h3>{{responseText}}</h3>
-{{/if}}
-{{outlet}}
+    {{#if loggedIn}}
+
+    <h4 class="navbar-text pull-left">
+      You logged in as {{loggedName}}
+    </h4>  
+
+    {{else}}
+
+    <p class="navbar-text pull-left">username</p>
+    <form class="navbar-form pull-left">
+      {{view Ember.TextField valueBinding="username"}} 
+    </form>
+
+    <p class="navbar-text pull-left">password</p>
+    <form class="navbar-form pull-left">
+      {{view Ember.TextField valueBinding="password"}} 
+    </form>
+    
+    <button class="btn btn-primary pull-left" {{action login}}>login</button>
+
+    <p class="navbar-text pull-left">{{responseText}}</p>
+
+    {{/if}}
+  
+  </div>
+</div>

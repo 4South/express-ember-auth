@@ -3,6 +3,7 @@ App.ApplicationController = Ember.Controller.extend
   username: ''
   password: ''
   loggedIn: false
+  loggedName: ""
   responseText: ''
 
   data: (->
@@ -17,10 +18,13 @@ App.ApplicationController = Ember.Controller.extend
       contentType: 'application/json; charset=utf-8'
       context: @
       data: JSON.stringify(@get('data'))
+
       success: (data) ->
         Ember.run(@, ()->
           @set('loggedIn', true)
+          @set('loggedName', data.username)
         )
+
       error: (xhr) ->
         Ember.run(@, ()->
           console.log(xhr)

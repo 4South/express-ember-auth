@@ -4,12 +4,14 @@ var passport = require('passport');
 var UserModel = require('./models/UserModel.js');
 var UserManager = require('./models/UserManager.js');
 
+
 //connect to locally running mongodb
 var dbString = "mongodb://localhost:27017/authapp";
 mongoose.connect(dbString, function(err) {
   if (err) throw err;
   console.log ('Successfully connected to MongoDB using ', dbString);  
 });
+
 
 //start express app
 var app = express();
@@ -35,9 +37,9 @@ app.post('/login', function(req, res) {
   UserModel.findOne, function(err, doesNotExist, user) {
     if (err) throw err;
 
-    //if this user does not exist, return a 404 w/ message
+    //if this user does not exist, return a 400 w/ message
     if (doesNotExist) {
-      res.status(404).send('not a valid user');
+      res.status(400).send('not a valid user');
     } else {
       //check if the password found matches the one provided 
       UserManager.comparePW(req.body.password, user.password,
@@ -48,11 +50,12 @@ app.post('/login', function(req, res) {
         //if match, return user formatted user model
           res.send(formatDbResponse(user));  
         } else {
-        //if not match, return 404 w/ message
-          res.status(404).send('incorrect password');
+        //if not match, return 400 w/ message
+          res.status(400).send('incorrect password');
         } 
       });
     }
+
   });
 });
 
@@ -85,12 +88,12 @@ app.post('/login/create', function(req, res) {
   });
 });
 
+/*
 //TEST
 var newUser = new UserModel({
-  username: 'lynn',
+  username: 'biff',
   password: '1234',
 });
-
 
 //same test as above w/ UserManager
 UserManager.checkIfExists({username: newUser.username}, UserModel, 
@@ -109,11 +112,13 @@ UserModel.findOne, function(err, doesNotExist, user) {
     console.log(formatDbResponse(user), 'already exists in the db');
   }
 });
+*/
 
 //helper to format response to Ember conventions
 formatDbResponse = function(model) {
   var formattedModel = model.toObject();
   formattedModel.id = formattedModel._id;
+  delete formattedModel.password
   delete formattedModel._id;
   delete formattedModel.__v; 
   return formattedModel;

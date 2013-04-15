@@ -2,6 +2,7 @@ App.ApplicationController = Ember.Controller.extend({
   username: '',
   password: '',
   loggedIn: false,
+  loggedName: "",
   responseText: '',
   data: (function() {
     return {
@@ -19,7 +20,8 @@ App.ApplicationController = Ember.Controller.extend({
       data: JSON.stringify(this.get('data')),
       success: function(data) {
         return Ember.run(this, function() {
-          return this.set('loggedIn', true);
+          this.set('loggedIn', true);
+          return this.set('loggedName', data.username);
         });
       },
       error: function(xhr) {
