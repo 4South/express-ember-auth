@@ -1,11 +1,15 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
 
+    <button class="btn btn-success pull-left" {{action tester}}>tester</button>
+
     {{#if loggedIn}}
 
-    <h4 class="navbar-text pull-left">
+    <p class="navbar-text pull-left">
       You logged in as {{loggedName}}
-    </h4>  
+    </p>  
+
+    <button class="btn btn-warning pull-left" {{action logout}}>logout</button>
 
     {{else}}
 
@@ -16,10 +20,11 @@
 
     <p class="navbar-text pull-left">password</p>
     <form class="navbar-form pull-left">
-      {{view Ember.TextField valueBinding="password"}} 
+      {{view Ember.TextField type="password" valueBinding="password"}} 
     </form>
     
     <button class="btn btn-primary pull-left" {{action login}}>login</button>
+    <button class="btn btn-warning pull-left" {{action create}}>create</button>
 
     <p class="navbar-text pull-left">{{responseText}}</p>
 

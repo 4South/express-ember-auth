@@ -53,6 +53,23 @@ var UserManager = {
       callback(err, doesNotExist, user);
     }); 
   },
+  
+  /*
+  create a new account w/ the provided database context, method, and params
+  params: creation params
+  params: creationFunction's context object
+  params: creationFunction
+  params: callback to invoke (passes err and user)
+  */
+  createNewUser : function(creationParams, functionContext, 
+  creationFunction, callback) {
+   
+    //execute the lookupfunction provided with appropriate context
+    creationFunction.call(functionContext, creationParams, function(err, user) {
+      var doesNotExist = (null === user || undefined === user); 
+      callback(err, user);
+    }); 
+  },
 };
 
 module.exports = UserManager;

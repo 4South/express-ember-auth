@@ -10,9 +10,24 @@ App.ApplicationController = Ember.Controller.extend({
       password: this.get('password')
     };
   }).property('username', 'password'),
-  login: function() {
+  tester: function() {
     return Ember.$.ajax({
-      url: '/login',
+      url: '/user/sample',
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json; charset=utf-8',
+      context: this,
+      success: function(data) {
+        return console.log(data.message);
+      },
+      error: function(xhr) {
+        return console.log(xhr.responseText);
+      }
+    });
+  },
+  create: function() {
+    Ember.$.ajax({
+      url: '/user/create',
       type: 'POST',
       dataType: 'json',
       contentType: 'application/json; charset=utf-8',
@@ -28,6 +43,55 @@ App.ApplicationController = Ember.Controller.extend({
         return Ember.run(this, function() {
           console.log(xhr);
           this.set('loggedIn', false);
+          return this.set('responseText', xhr.responseText);
+        });
+      }
+    });
+    this.set('username', '');
+    return this.set('password', '');
+  },
+  login: function() {
+    Ember.$.ajax({
+      url: '/user/login',
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json; charset=utf-8',
+      context: this,
+      data: JSON.stringify(this.get('data')),
+      success: function(data) {
+        return Ember.run(this, function() {
+          this.set('loggedIn', true);
+          return this.set('loggedName', data.username);
+        });
+      },
+      error: function(xhr) {
+        return Ember.run(this, function() {
+          console.log(xhr);
+          this.set('loggedIn', false);
+          return this.set('responseText', xhr.responseText);
+        });
+      }
+    });
+    this.set('username', '');
+    return this.set('password', '');
+  },
+  logout: function() {
+    return Ember.$.ajax({
+      url: '/user/logout',
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json; charset=utf-8',
+      context: this,
+      success: function(data) {
+        return Ember.run(this, function() {
+          this.set('loggedIn', false);
+          return this.set('loggedName', '');
+        });
+      },
+      error: function(xhr) {
+        return Ember.run(this, function() {
+          console.log(xhr);
+          this.set('loggedIn', true);
           return this.set('responseText', xhr.responseText);
         });
       }
