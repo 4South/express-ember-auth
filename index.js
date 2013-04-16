@@ -1,65 +1,23 @@
-//main application module
-var express = require('express');
-
-//mongodb interface module
-var mongoose = require('mongoose');
-
-//user auth/session tracking module
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var LocalAuth = require('./app/authsystem/AuthSystem.js').authStrat;
-
-//model object (based on mongoose/mongodb)
-var UserModel = require('./app/models/UserModel.js');
-
-//helper object for user management
-var UserManager = require('./app/models/UserManager.js');
-
-
-//AUTHORIZATION SETUP
-//setup auth middleware for api endpoint authentication
-passport.use(LocalAuth);
-
-passport.serializeUser(function(user, done) {
-  console.log(user, 'is the user');
-  done(null, user._id);
-});
-
-passport.deserializeUser(function(id, done) {
-  UserModel.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
-
-//DATABASE SETUP
-//connect to locally running mongodb
-var dbString = "mongodb://localhost:27017/authapp";
-
-mongoose.connect(dbString, 
-function(err) {
-  if (err) throw err;
-  console.log ('Successfully connected to' , dbString);  
-});
-
-
-//APPLICATION SETUP
-//start express app
-var app = express();
+var express = require('express')
+  , passport = require('passport')
+  , pass = require('./app/config/PassPort.js')
+  , app = express()
+  , db = require('./app/DB/DB.js');
 
 //configuration for default env, could be changed for diff deployments
 app.configure(function() {
   app.use(express.logger());
-  app.use(express.static(__dirname + "/public"));
-  app.use(express.static(__dirname));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
+  app.use(express.methodOverride());
   app.use(express.session({
     secret: '42',
   }));
   app.use(passport.initialize());
   app.use(passport.session());
-  //app.use(app.router);
+  app.use(app.router);
+  app.use(express.static(__dirname + "/public"));
+  app.use(express.static(__dirname));
 });
 
 
@@ -77,22 +35,19 @@ function(req, res) {
 
 app.post( '/user/create',
 function(req, res) {
-  UserManager.checkIfExists({username: req.body.username},
-                            UserModel,
-                            UserModel.findOne,
-  function(err, doesNotExist, user) {
+  db.UserModel.findOne({username: req.body.username},
+  function(err, user) {
     var data = {};
     if (err) throw err;
     
-    if (!doesNotExist) {
+    if (user) {
       console.log('User already exists!');
       res.status(400).send('User already exists');
     } else {
       data.username = req.body.username;
       data.password = req.body.password;
-      UserManager.createNewUser(data,
-                                UserModel,
-                                UserModel.create,
+      data.email = req.body.email;
+      db.UserModel.create(data,
       function(err, user) {
         if (err) throw err;
         
@@ -116,7 +71,7 @@ var enforceAuthentication = function (req, res, next) {
 
 
 app.get( '/user/sample',
-          enforceAuthentication,
+          pass.verifyAuth,
 function(req, res) {
   res.json({message: 'you are logged in grats on that!'});
 });
