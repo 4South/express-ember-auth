@@ -3,6 +3,7 @@ var express = require('express')
   , pass = require('./app/config/PassPort.js')
   , app = express()
   , userRoutes = require('./app/routes/UserRoutes.js')
+  , apiRoutes = require('./app/routes/APIRoutes.js')
   , db = require('./app/DB/DB.js');
 
 //configuration for default env, could be changed for diff deployments
@@ -20,7 +21,6 @@ app.configure(function() {
   app.use(express.static(__dirname + "/public"));
   app.use(express.static(__dirname));
 });
-
 
 //ROUTES
 app.get('/', function(req, res) {
